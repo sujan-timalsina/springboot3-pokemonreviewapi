@@ -25,6 +25,11 @@ public class PokemonController {
         return new ResponseEntity<>(pokemonService.getAllPokemon(), HttpStatus.OK);
     }
 
+    @GetMapping("{pokemonId}")
+    public ResponseEntity<PokemonDto> getPokemonById(@PathVariable("pokemonId") int id){
+        return ResponseEntity.ok(pokemonService.getPokemonById(id));
+    }
+
     @PostMapping("create")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<PokemonDto> createPokemon(@RequestBody PokemonDto pokemonDto){
