@@ -10,4 +10,6 @@ public interface PokemonService {
     List<PokemonDto> getAllPokemon();
 
     PokemonDto getPokemonById(int id);
+
+    PokemonDto updatePokemon(PokemonDto pokemonDto, int id);
 }

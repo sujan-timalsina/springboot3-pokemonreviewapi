@@ -26,12 +26,7 @@ public class PokemonServiceImpl implements PokemonService {
         pokemon.setType(pokemonDto.getType());
 
         Pokemon newPokemon = pokemonRepository.save(pokemon);
-
-        PokemonDto pokemonResponse = new PokemonDto();
-        pokemonResponse.setId(newPokemon.getId());
-        pokemonResponse.setName(newPokemon.getName());
-        pokemonResponse.setType(newPokemon.getType());
-        return pokemonResponse;
+        return mapToDto(newPokemon);
     }
 
     @Override
@@ -45,6 +40,17 @@ public class PokemonServiceImpl implements PokemonService {
         Pokemon pokemon = pokemonRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Pokemon doesn't exist of id: "+id));
         return mapToDto(pokemon);
+    }
+
+    @Override
+    public PokemonDto updatePokemon(PokemonDto pokemonDto, int id) {
+        Pokemon pokemon = pokemonRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Pokemon doesn't exist of id: "+id+" for the update"));
+        pokemon.setName(pokemonDto.getName());
+        pokemon.setType(pokemonDto.getType());
+
+        Pokemon updatedPokemon = pokemonRepository.save(pokemon);
+        return mapToDto(updatedPokemon);
     }
 
     private PokemonDto mapToDto(Pokemon pokemon){
