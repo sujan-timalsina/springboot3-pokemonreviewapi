@@ -1,13 +1,14 @@
 package com.pokemonreview.service;
 
 import com.pokemonreview.dto.PokemonDto;
+import com.pokemonreview.dto.PokemonResponse;
 
 import java.util.List;
 
 public interface PokemonService {
 
     PokemonDto createPokemon(PokemonDto pokemonDto);
-    List<PokemonDto> getAllPokemon();
+    PokemonResponse getAllPokemon(int pageNo, int pageSize);
 
     PokemonDto getPokemonById(int id);
 
